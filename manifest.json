@@ -1,10 +1,41 @@
 {
-    "manifest_version": 1,
-    "name": "TWT QUOTE VIEWER",
+    "manifest_version": 3,
+    "name": "Easy Quote Viewer",
     "description": "Base Level Extension",
     "version": "1.0",
-    "action": {
-      "default_popup": "hello.html",
-      "default_icon": "hello_extensions.png"
+    "content_scripts": [
+        {
+            "js": [
+                "js/content.js"
+            ],
+            "matches": [
+                "https://developer.chrome.com/docs/extensions/*",
+                "https://developer.chrome.com/docs/webstore/*",
+                "https://twitter.com/*"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "https://twitter.com/"
+    ],
+    "externally_connectable": {
+        "matches": [
+            "https://twitter.com/*"
+        ]
+    },
+    "background": {
+        "service_worker": "js/service-worker.js",
+        "type": "module"
+    },
+    "permissions": [
+        "storage",
+        "alarms"
+    ],
+    "host_permissions": [
+        "https://extension-tips.glitch.me/*"
+    ],
+    "minimum_chrome_version": "102",
+    "omnibox": {
+        "keyword": "api"
     }
-  }
+}
